@@ -1,13 +1,44 @@
-import { IResponse } from "../../types";
+import { IResponse } from '../../types'
+
+type DynamicObject = { [x: string]: any }
 
 interface IMakeResponseOptions<T> {
   data: T
-  status: number
 }
 
-export function makeResponse<T>({ data, status }: IMakeResponseOptions<T>): IResponse<T> {
+export function makeResponse<T extends DynamicObject>({
+  data
+}: IMakeResponseOptions<T>): IResponse {
+  const formattedObject = serialize(data)
+
   return {
-    status,
-    response: data
+    status: 200,
+    response: formattedObject
   }
+}
+
+type ISerialized = DynamicObject | Array<DynamicObject>
+type ISerializeObject = DynamicObject | Array<DynamicObject>
+
+export function serialize(obj: ISerializeObject): ISerialized {
+  const formattedObject: DynamicObject = {}
+
+  if (Array.isArray(obj)) {
+    return obj.map((object) => serialize(object))
+  }
+
+  Object.keys(obj).forEach((key) => {
+    formattedObject[formatKeyName(key)] = obj[key]
+  })
+
+  return formattedObject
+}
+
+function formatKeyName(name: string): string {
+  const formattedName = name
+    .split('_')
+    .map((fragment) => fragment.charAt(0).toUpperCase() + fragment.slice(1))
+    .join('')
+
+  return formattedName.charAt(0).toLocaleLowerCase() + formattedName.slice(1)
 }

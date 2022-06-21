@@ -1,6 +1,8 @@
-export interface IResponse<T> {
+export interface IResponse {
   status: number;
-  response: T
+  response: {
+    [x: string]: any
+  }
 }
 
 export interface Film {
