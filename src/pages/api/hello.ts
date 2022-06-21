@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { api } from '../../services/api'
 import { Film, IResponse } from '../../types'
-import { makeResponse } from '../utils/response-formatter'
+import { makeResponse } from '../../utils/response-formatter'
 
 export default async function handler(
   _: NextApiRequest,
