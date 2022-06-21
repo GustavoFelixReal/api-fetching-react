@@ -8,12 +8,12 @@ interface IMakeResponseOptions<T> {
 
 export function makeResponse<T extends DynamicObject>({
   data
-}: IMakeResponseOptions<T>): IResponse {
+}: IMakeResponseOptions<T>): IResponse<T> {
   const formattedObject = serialize(data)
 
   return {
     status: 200,
-    response: formattedObject
+    response: formattedObject as T
   }
 }
 

@@ -1,23 +1,21 @@
-export interface IResponse {
+export interface IResponse<T> {
   status: number;
-  response: {
-    [x: string]: any
-  }
+  response: T
 }
 
 export interface Film {
   id: string
   title: string
-  original_title: string
-  original_title_romanised: string
+  originalTitle: string
+  originalTitleRomanised: string
   image: string
-  movie_banner: string
+  movieBanner: string
   description: string
   director: string
   producer: string
-  release_date: string
-  running_time: string
-  rt_score: string
+  releaseDate: string
+  runningTime: string
+  rtScore: string
   people: string[]
   species: string[]
   locations: string[]

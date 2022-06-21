@@ -6,9 +6,9 @@ import { makeResponse } from '../../utils/response-formatter'
 
 export default async function handler(
   _: NextApiRequest,
-  res: NextApiResponse<IResponse>
+  res: NextApiResponse<IResponse<Film[]>>
 ) {
-  const { data: films } = await api.get<Array<Film>>('films')
+  const { data: films } = await api.get<Film[]>('films')
 
   res.status(200).json(makeResponse({ data: films }))
 }

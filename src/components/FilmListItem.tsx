@@ -2,18 +2,18 @@ import { Film } from '../types';
 
 import { StyledFilmListItem } from './styled';
 
-interface FilmListItemProps {
+export interface FilmListItemProps {
   film: Film;
 }
 
 export default function FilmListItem({ film }: FilmListItemProps) {
   return (
-    <StyledFilmListItem banner={film.movie_banner}>
+    <StyledFilmListItem>
       <div className="film-info">
         <div className="film-header">
           <img src={film.image} alt={`Capa do filme "${film.title}"`} />
           <h2>
-            {film.title} ({film.release_date})
+            {film.title} ({film.releaseDate})
           </h2>
 
           <small>Dirigido por: </small>
