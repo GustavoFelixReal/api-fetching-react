@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/utils/response-formatter.js", "src/pages/api/hello.js", "src/pages/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]
